@@ -124,19 +124,32 @@ ReactDOM.render(
 ## 初始化状态下：
 - getDefaultProps:获取实例的默认属性，即使没有生成实例，组件的第一个实例被初始化createClass的时候被调用，只调用一次；
 - getInitialState:获取每个实例的初始化状态
-- componentWillMount：在render直线最后一次修改状态的机会，组件即将被装载渲染到页面上
-	- 可以在这里部署事件监听，this.setState在这里不起作用
+- componentWillMount：在render之前最后一次修改状态的机会，组件即将被装载渲染到页面上
 - render：
 	- 组件在这里生成虚拟dom节点，此时只能访问到this.state和this.props；
 	- 组件的render函数只能有一个顶层组件
 - componentDidMount:可以修改dom，组件真正被装载之后，可以使用this.getDOMNode()抓取dom
+	- 组件挂载之后调用一次，这个时候可以使用refs
 
 ## 运行状态下：
 - componentWillReceiveProps(object nextProps):组件将要接收到属性的时候被调用
 - shouldComponentUpdata:组件接收到新属性或者新状态的时候，可以返回false，接收到的数据不更新，组织调用render函数，后面的函数也不会继续执行了。
+	- 只要组件在初始化后被挂载了，每次调用setState之后都会调用shouldComponentUpdate判断组件是否重新渲染，默认返回true，然后componentWillUpdate被调用，之后是调用render函数重新渲染。
 - componentWillUpdate(object nextProps, object nextState)：不能修改属性和状态了,可以使用this.getDOMNode()
 - render: 将虚拟dom更新到真是dom上
 - componentDidUpdate: 可以修改dom,在虚拟dom更新后立刻触发，这个不是为了初始化render，是为了在提供在dom更新后操作dom的机会。
 
 ## 销毁阶段：
-- componentWillUnmount:销毁监听和计时器等
+- componentWillUnmount:组件被卸载的时候被调用，一般在componentDidMount里面注册的事件都需要在这个地方进行删除。
+
+## LifeCycle 需要注意的：
+### componentWillMount/componentDidMount 和 componentWillUpdate/componentDidUpdate
+- 只有在首次初始化挂载的时候执行componentWillMount和componentDidMount，以后的每次更新都是调用后者。
+- 组件挂载之后，除了首次render之后调用componentDidMount，其他的render结束之后都是调用componentDidUpdate
+### render
+- 只有render函数是必须的，其他都不是，记住不要在render函数里面修改state
+- 在react中触发reader有四条途径：
+	- 首次挂载组件，渲染initial render
+	- 调用this.setState，需要注意的是并不是每一次setState都会触发一次render，react可能会合并操作，再一次性进行render
+	- 父组件发生更新
+	- 调用this.forceUpdate
