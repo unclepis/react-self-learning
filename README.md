@@ -125,17 +125,18 @@ ReactDOM.render(
 - getDefaultProps:获取实例的默认属性，即使没有生成实例，组件的第一个实例被初始化createClass的时候被调用，只调用一次；
 - getInitialState:获取每个实例的初始化状态
 - componentWillMount：在render直线最后一次修改状态的机会，组件即将被装载渲染到页面上
+	- 可以在这里部署事件监听，this.setState在这里不起作用
 - render：
 	- 组件在这里生成虚拟dom节点，此时只能访问到this.state和this.props；
 	- 组件的render函数只能有一个顶层组件
-- componentDidMount:可以修改dom，组件真正被装载之后
+- componentDidMount:可以修改dom，组件真正被装载之后，可以使用this.getDOMNode()抓取dom
 
 ## 运行状态下：
-- componentWillReceiveProps:组件将要接收到属性的时候被调用
+- componentWillReceiveProps(object nextProps):组件将要接收到属性的时候被调用
 - shouldComponentUpdata:组件接收到新属性或者新状态的时候，可以返回false，接收到的数据不更新，组织调用render函数，后面的函数也不会继续执行了。
-- componentWillUpdate：不能修改属性和状态了
+- componentWillUpdate(object nextProps, object nextState)：不能修改属性和状态了,可以使用this.getDOMNode()
 - render: 将虚拟dom更新到真是dom上
-- componentDidUpdate: 可以修改dom
+- componentDidUpdate: 可以修改dom,在虚拟dom更新后立刻触发，这个不是为了初始化render，是为了在提供在dom更新后操作dom的机会。
 
 ## 销毁阶段：
 - componentWillUnmount:销毁监听和计时器等
