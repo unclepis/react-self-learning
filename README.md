@@ -85,20 +85,20 @@ self-learning not for react
 	- 多个子节点，为array
 	- react提供了一个工具方法，React.Children来处理this.props.children
 - propTypes:
-	-组件类的这个属性就是来验证组件实例的属性是否符合要求。
-        -React.PropTypes.string
-        -React.PropTypes.array
-        -React.PropTypes.bool
-        -React.PropTypes.func
-        -React.PropTypes.number
-        -React.PropTypes.object
-        -React.PropTypes.oneOf(['Name','age']) 枚举类型enum
-        -React.PropTypes.oneOfType([React.PropTypes.string,React.PropTypes.number]) 可以是对个对象类型中的一个
-        -React.PropTypes.arrayOf(React.PropTypes.number) 可以指定数组的成员
-        -React.PropTypes.objectOf(React.PropTypes.number) 可以指定对象的成员
-        -React.PropTypes.shape({color:React.PropTypes.string,fontSize:React.PropTypes.number}) 可以指定特定shape的对象，比如key为color和fontsize的对象
-        -React.PropTypes.number.isRequired 任意类型加上isRequired是属性不能为空
-        -React.PropTypes.any.isRequired ES6的any表示任意类型，isRequired不能为空
+	- 组件类的这个属性就是来验证组件实例的属性是否符合要求。
+        - React.PropTypes.string
+        - React.PropTypes.array
+        - React.PropTypes.bool
+        - React.PropTypes.func
+        - React.PropTypes.number
+        - React.PropTypes.object
+        - React.PropTypes.oneOf(['Name','age']) 枚举类型enum
+        - React.PropTypes.oneOfType([React.PropTypes.string,React.PropTypes.number]) 可以是对个对象类型中的一个
+        - React.PropTypes.arrayOf(React.PropTypes.number) 可以指定数组的成员
+        - React.PropTypes.objectOf(React.PropTypes.number) 可以指定对象的成员
+        - React.PropTypes.shape({color:React.PropTypes.string,fontSize:React.PropTypes.number}) 可以指定特定shape的对象，比如key为color和fontsize的对象
+        - React.PropTypes.number.isRequired 任意类型加上isRequired是属性不能为空
+        - React.PropTypes.any.isRequired ES6的any表示任意类型，isRequired不能为空
 - getDefaultProps:设置组件属性的默认值
 
 # virtual Dom 虚拟dom
