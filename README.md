@@ -1,5 +1,5 @@
 # React lifeCycle map:
-![img](../img/react-lifeCycle.PNG)
+![img](img/react-lifeCycle.PNG)
 # react-self-learning
 self-learning not for react
 # JSX
@@ -159,3 +159,12 @@ ReactDOM.render(
 
 ## 销毁阶段：
 - componentWillUnmount:销毁监听和计时器等
+
+# React API
+- setState 设置状态
+- replaceState 替换状态
+- setProps 设置属性
+- replaceProps 替换属性
+- forceUpdate 强制更新
+- findDOMNode 获取DOM节点 
+- isMounted 判断组件挂载状态
