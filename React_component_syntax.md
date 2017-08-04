@@ -33,7 +33,8 @@
     
     ~~~
         function App(props) {
-            function handleClick() { //ES6已经允许在函数内部声明有名函数了，这样如果需要使用参数props就可以直接使用了，如果定义在App外面，还需要传参
+            function handleClick() { 
+            //ES6已经允许在函数内部声明有名函数了，这样如果需要使用参数props就可以直接使用了，如果定义在App外面，还需要传参
                 props.dispatch({ type: 'app/create' });
         }
             return <div onClick={handleClick}>${props.name}</div>
