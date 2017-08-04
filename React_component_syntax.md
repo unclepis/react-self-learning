@@ -29,8 +29,27 @@
             </div>)
         }
     ~~~
+    - 这是函数，不是 Object，没有 this 作用域，是 pure function。
     
-    - 优点：
+    ~~~
+        function App(props) {
+            function handleClick() { //ES6已经允许在函数内部声明有名函数了，这样如果需要使用参数props就可以直接使用了，如果定义在App外面，还需要传参
+                props.dispatch({ type: 'app/create' });
+        }
+            return <div onClick={handleClick}>${props.name}</div>
+        }
+    ~~~
+    - 对props的数据验证
+    
+    ~~~
+        function App(props) {
+            return <div>{props.name}</div>;
+        }
+        App.propTypes = {
+          name: React.PropTypes.string.isRequired,
+        };
+    ~~~
+    - 优点：
     无状态组件的创建形式使代码的可读性更好，并且减少了大量冗余的代码，精简至只有一个render方法，大大的增强了编写一个组件的便利，除此之外无状态组件还有以下几个显著的特点：
     1.组件不会被实例化，整体渲染性能得到提升
     因为组件被精简成一个render方法的函数来实现的，由于是无状态组件，所以无状态组件就不会在有组件实例化的过程，无实例化过程也就不需要分配多余的内存，从而性能得到一定的提升。
