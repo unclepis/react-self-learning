@@ -30,13 +30,12 @@
         }
     ~~~
     - 这是函数，不是 Object，没有 this 作用域，是 pure function。
-    
+    - ES6已经允许在函数内部声明有名函数了，这样如果需要使用参数props就可以直接使用了，如果定义在App外面，还需要传参
     ~~~
         function App(props) {
-            function handleClick() { 
-            //ES6已经允许在函数内部声明有名函数了，这样如果需要使用参数props就可以直接使用了，如果定义在App外面，还需要传参
+             function handleClick() { 
                 props.dispatch({ type: 'app/create' });
-        }
+            }
             return <div onClick={handleClick}>${props.name}</div>
         }
     ~~~
